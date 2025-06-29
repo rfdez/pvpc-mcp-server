@@ -6,17 +6,17 @@ This server implements the Model Context Protocol (MCP) to provide access to the
 
 ## Features
 
-* **Fetch PVPC prices**: Retrieve electricity prices for a specified date range and geographical area.
+- **Fetch PVPC prices**: Retrieve electricity prices for a specified date range and geographical area.
 
 ## Tools
 
-* `pvpc_fetch_prices`
-  * Fetch PVPC prices for a specific date range and geographical area.
-  * Inputs:
-    * `start_date`: Start date in ISO format (e.g., `2023-10-01`).
-    * ...
-  * Returns:
-    * ...
+- `pvpc_fetch_prices`
+    - Fetch PVPC prices for a specific date range and geographical area.
+        - Inputs:
+            - `start_date`: Start date in ISO format (e.g., `2023-10-01`).
+            - ...
+        - Returns:
+            - ...
 
 ## Setup
 
