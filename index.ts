@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+
+import { PvpcMcpServer } from "./src/mcp.js";
+import { PvpcApiClient } from "./src/pvpc.js";
+
+async function main() {
+	const apiClient = new PvpcApiClient();
+	const server = new PvpcMcpServer(apiClient);
+
+	await server.start();
+
+	console.error("PVPC MCP Server running on stdio");
+
+	process.on("SIGINT", async () => {
+		await server.stop();
+
+		process.exit(0);
+	});
+
+	process.on("SIGTERM", async () => {
+		try {
+			await server.stop();
+		} catch (error) {
+			console.error("Error stopping MCP server:", error);
+
+			process.exit(1);
+		}
+
+		process.exit(0);
+	});
+}
+
+main().catch((error) => {
+	console.error("Fatal error:", error);
+
+	process.exit(1);
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+	console.error("Unhandled Rejection at:", promise, "reason:", reason);
+
+	process.exit(1);
+});
+
+process.on("uncaughtException", (error) => {
+	console.error("Uncaught Exception:", error);
+
+	process.exit(1);
+});
