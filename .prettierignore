@@ -1,2 +1,7 @@
+.github/
 dist/
+.release-please-manifest.json
+CHANGELOG.md
 package-lock.json
+README.md
+release-please-config.json
