@@ -1,6 +1,6 @@
 {
 	"name": "@rfdez/pvpc-mcp-server",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "MCP Server that utilizes the official API to retrieve the hourly electricity price in Spain under the PVPC (Voluntary Price for Small Consumers).",
 	"keywords": [
 		"pvpc",
