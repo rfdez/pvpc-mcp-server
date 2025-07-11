@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { endOfToday, startOfToday } from "date-fns";
-import z from "zod";
+import * as z from "zod";
 import packageJson from "../package.json" with { type: "json" };
 import { PvpcError } from "./error.js";
 import { PvpcApiClient } from "./pvpc.js";
@@ -39,7 +39,7 @@ export class PvpcMcpServer {
 			"Fetch PVPC Prices",
 			{
 				locale: z
-					.enum(["es", "en"])
+					.literal(["es", "en"])
 					.optional()
 					.default("es")
 					.describe(
@@ -60,7 +60,7 @@ export class PvpcMcpServer {
 						"End of the date range to filter indicator values (iso8601 format). E.g. 2025-06-29T23:59:59.999+02:00. Defaults to the end of today.",
 					),
 				timeTrunc: z
-					.enum([
+					.literal([
 						"five_minutes",
 						"ten_minutes",
 						"fifteen_minutes",
