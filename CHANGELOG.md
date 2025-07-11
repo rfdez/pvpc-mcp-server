@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/rfdez/pvpc-mcp-server/compare/v1.2.0...v1.3.0) (2025-07-11)
+
+
+### Features
+
+* enhance Dockerfile and project structure ([7592418](https://github.com/rfdez/pvpc-mcp-server/commit/75924189f5f0a654805f3fad788bea74e3a463ce))
+
 ## [1.2.0](https://github.com/rfdez/pvpc-mcp-server/compare/v1.1.0...v1.2.0) (2025-07-11)
 
 
