@@ -10,10 +10,16 @@ export class PvpcMcpServer {
 	private readonly server: McpServer;
 
 	constructor(private readonly apiClient: PvpcApiClient) {
-		this.server = new McpServer({
-			name: "pvpc-mcp-server",
-			version: packageJson.version,
-		});
+		this.server = new McpServer(
+			{
+				name: "pvpc-mcp-server",
+				version: packageJson.version,
+			},
+			{
+				instructions:
+					"Use this server to fetch electricity prices in the PVPC market.",
+			},
+		);
 
 		this.setupTools();
 	}
