@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { PvpcMcpServer } from "./src/mcp.js";
-import { PvpcApiClient } from "./src/pvpc.js";
+import { PvpcMcpServer } from "./mcp.js";
+import { PvpcApiClient } from "./pvpc.js";
 
 async function main() {
 	const apiClient = new PvpcApiClient();
