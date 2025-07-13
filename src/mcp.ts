@@ -17,7 +17,7 @@ export class PvpcMcpServer {
 			},
 			{
 				instructions:
-					"Use this server to fetch electricity prices in the PVPC market.",
+					"Use this server to fetch the Voluntary Price for the Small Consumer (PVPC) for consumers billed under the 2.0 TD tariff.",
 			},
 		);
 
