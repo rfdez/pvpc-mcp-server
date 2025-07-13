@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This server implements the Model Context Protocol (MCP) to provide access to the Spanish PVPC (Precio Voluntario para el Pequeño Consumidor) electricity prices as tools for language models or other MCP clients. It allows querying and retrieving electricity prices programmatically through a standardized interface.
+Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica at 8:15 p.m. This includes the hourly electricity tariffs that will apply the following day for consumers billed under the 2.0 TD tariff.
 
 ## Features
 
