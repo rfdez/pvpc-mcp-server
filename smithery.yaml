@@ -1,0 +1,26 @@
+runtime: container
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      apiKey:
+        type: string
+        title: ESIOS API Key
+        description: Your ESIOS API key for accessing the service.
+    required:
+      - apiKey
+  exampleConfig:
+    apiKey: YOUR_ESIOS_API_KEY
+  commandFunction:
+    |-
+    config => ({
+      command: 'node',
+      args: ['/app/dist/index.js'],
+      env: {
+        ESIOS_API_KEY: config.apiKey
+      }
+    })
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
