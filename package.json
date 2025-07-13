@@ -1,7 +1,7 @@
 {
 	"name": "@rfdez/pvpc-mcp-server",
 	"version": "1.3.0",
-	"description": "MCP Server that utilizes the official API to retrieve the hourly electricity price in Spain under the PVPC (Voluntary Price for Small Consumers).",
+	"description": "Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica at 8:15 p.m. This includes the hourly electricity tariffs that will apply the following day for consumers billed under the 2.0 TD tariff.",
 	"keywords": [
 		"pvpc",
 		"mcp",
