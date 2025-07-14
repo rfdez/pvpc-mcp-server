@@ -59,7 +59,9 @@ Add this to your Claude Desktop `claude_desktop_config.json` file. See [Claude D
 
 Use the following link to install the MCP Server in Raycast:
 
-[![raycast badge](https://shields.io/badge/Raycast-Install%20MCP%20Server-eee?labelColor=FF6363&logo=raycast&logoColor=fff&style=flat-square)](raycast://mcp/install?%7B%22name%22%3A%22Voluntary%20Price%20for%20the%20Small%20Consumer%20(PVPC)%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40rfdez%2Fpvpc-mcp-server%40latest%22%5D%2C%22env%22%3A%7B%22ESIOS_API_KEY%22%3A%22your_esios_api_key%22%7D%7D)
+<a href="raycast://mcp/install?%7B%22name%22%3A%22Voluntary%20Price%20for%20the%20Small%20Consumer%20(PVPC)%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40rfdez%2Fpvpc-mcp-server%40latest%22%5D%2C%22env%22%3A%7B%22ESIOS_API_KEY%22%3A%22your_esios_api_key%22%7D%7D">
+  <img src="https://shields.io/badge/Raycast-Install%20MCP%20Server-eee?labelColor=FF6363&logo=raycast&logoColor=fff&style=flat-square" alt="Install MCP Server in Raycast">
+</a>
 
 See [Raycast MCP docs](https://manual.raycast.com/model-context-protocol) for more info.
 
