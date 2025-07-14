@@ -1,7 +1,7 @@
 # Voluntary Price for the Small Consumer (PVPC) MCP Server
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![NPM Version](https://img.shields.io/npm/v/%40rfdez%2Fpvpc-mcp-server)
+[![NPM Version](https://img.shields.io/npm/v/%40rfdez%2Fpvpc-mcp-server)](https://www.npmjs.com/package/@rfdez/pvpc-mcp-server)
 [![smithery badge](https://smithery.ai/badge/@rfdez/pvpc-mcp-server)](https://smithery.ai/server/@rfdez/pvpc-mcp-server)
 
 Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica at 8:15 p.m. This includes the hourly electricity tariffs that will apply the following day for consumers billed under the 2.0 TD tariff.
