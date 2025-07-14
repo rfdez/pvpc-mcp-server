@@ -9,7 +9,7 @@ async function main() {
 
 	await server.start();
 
-	console.error("PVPC MCP Server running on stdio");
+	console.log("MCP server is running...");
 
 	process.on("SIGINT", async () => {
 		await server.stop();
@@ -31,7 +31,7 @@ async function main() {
 }
 
 main().catch((error) => {
-	console.error("Fatal error:", error);
+	console.error("MCP server error:", error);
 
 	process.exit(1);
 });

@@ -13,6 +13,7 @@ export class PvpcMcpServer {
 		this.server = new McpServer(
 			{
 				name: "pvpc-mcp-server",
+				title: "Voluntary Price for the Small Consumer (PVPC) MCP Server",
 				version: packageJson.version,
 			},
 			{
@@ -21,7 +22,7 @@ export class PvpcMcpServer {
 			},
 		);
 
-		this.setupTools();
+		this.registerTools();
 	}
 
 	async start(): Promise<void> {
@@ -33,60 +34,59 @@ export class PvpcMcpServer {
 		await this.server.close();
 	}
 
-	private setupTools() {
-		this.server.tool(
-			"pvpc_fetch_prices",
-			"Fetch PVPC Prices",
+	private registerTools() {
+		this.server.registerTool(
+			"fetch_prices",
 			{
-				locale: z
-					.literal(["es", "en"])
-					.optional()
-					.default("es")
-					.describe(
-						"Locale for the prices. Accepted values: `es`, `en`. Defaults to `es`.",
-					),
-				startDate: z
-					.string()
-					.optional()
-					.default(startOfToday().toISOString())
-					.describe(
-						"Beginning of the date range to filter indicator values (iso8601 format). E.g. 2025-06-29T00:00:00.000+02:00. Defaults to the start of today.",
-					),
-				endDate: z
-					.string()
-					.optional()
-					.default(endOfToday().toISOString())
-					.describe(
-						"End of the date range to filter indicator values (iso8601 format). E.g. 2025-06-29T23:59:59.999+02:00. Defaults to the end of today.",
-					),
-				timeTrunc: z
-					.literal([
-						"five_minutes",
-						"ten_minutes",
-						"fifteen_minutes",
-						"hour",
-						"day",
-						"month",
-						"year",
-					])
-					.optional()
-					.default("hour")
-					.describe(
-						"Tells the API how to trunc data time series. Accepted values: `five_minutes`, `ten_minutes`, `fifteen_minutes`, `hour`, `day`, `month`, `year`. Defaults to `hour`.",
-					),
-				geoIds: z
-					.array(z.number())
-					.optional()
-					.default(Object.keys(PvpcApiClient.GEOS).map(Number))
-					.describe(
-						`Array of geographical IDs to filter the prices. Available IDs: ${Object.entries(
-							PvpcApiClient.GEOS,
-						)
-							.map(([id, name]) => `${id} (${name})`)
-							.join(
-								", ",
-							)}. Defaults to all available geographical IDs.`,
-					),
+				title: "Fetch PVPC Prices",
+				description:
+					"Fetches the Voluntary Price for the Small Consumer (PVPC) prices for a given date range and geographical area.",
+				inputSchema: {
+					locale: z
+						.enum(["es", "en"])
+						.default("es")
+						.describe(
+							"Defines the response language. Accepted values: `es`, `en`. Defaults to `es`.",
+						),
+					startDate: z
+						.string()
+						.default(startOfToday().toISOString())
+						.describe(
+							"Defines the starting date in iso8601 format. E.g. 2025-06-29T00:00:00.000+02:00. Defaults to the start of today.",
+						),
+					endDate: z
+						.string()
+						.default(endOfToday().toISOString())
+						.describe(
+							"Defines the ending date in iso8601 format. E.g. 2025-06-29T23:59:59.999+02:00. Defaults to the end of today.",
+						),
+					timeTrunc: z
+						.enum([
+							"five_minutes",
+							"ten_minutes",
+							"fifteen_minutes",
+							"hour",
+							"day",
+							"month",
+							"year",
+						])
+						.default("hour")
+						.describe(
+							"Defines the time aggregation of the requested data. Accepted values: `five_minutes`, `ten_minutes`, `fifteen_minutes`, `hour`, `day`, `month`, `year`. Defaults to `hour`.",
+						),
+					geoIds: z
+						.array(z.number())
+						.default(Object.keys(PvpcApiClient.GEOS).map(Number))
+						.describe(
+							`Defines the geographical IDs to filter the prices. Available IDs: ${Object.entries(
+								PvpcApiClient.GEOS,
+							)
+								.map(([id, name]) => `${id} (${name})`)
+								.join(
+									", ",
+								)}. Defaults to all available geographical IDs.`,
+						),
+				},
 			},
 			async ({ locale, startDate, endDate, timeTrunc, geoIds }) => {
 				try {
