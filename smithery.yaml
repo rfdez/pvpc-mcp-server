@@ -6,8 +6,8 @@ startCommand:
     properties:
       apiKey:
         type: string
-        title: ESIOS API Key
-        description: Your ESIOS API key for accessing the service.
+        title: Esios Red Eléctrica de España API Key
+        description: Your Esios Red Eléctrica de España API key for accessing the service.
     required:
       - apiKey
   exampleConfig:
