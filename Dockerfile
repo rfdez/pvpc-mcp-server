@@ -15,4 +15,5 @@ RUN --mount=type=cache,target=/root/.npm-production \
 	npm ci --omit=dev
 ENV NODE_ENV=production
 USER node
-CMD ["node", "/app/dist/index.js"]
+EXPOSE 8080
+CMD ["node", "/app/dist/index.js", "--transport", "http", "--port", "8080"]
