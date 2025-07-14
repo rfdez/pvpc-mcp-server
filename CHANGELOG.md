@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/rfdez/pvpc-mcp-server/compare/v1.3.1...v2.0.0) (2025-07-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* improve tool registration and update instructions
+
+### Bug Fixes
+
+* improve tool registration and update instructions ([df10aee](https://github.com/rfdez/pvpc-mcp-server/commit/df10aeeac5eb6e99f076d5031b8bdfa92350ce41))
+
 ## [1.3.1](https://github.com/rfdez/pvpc-mcp-server/compare/v1.3.0...v1.3.1) (2025-07-13)
 
 
