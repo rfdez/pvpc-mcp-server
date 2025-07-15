@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/rfdez/pvpc-mcp-server/compare/v2.0.1...v2.0.2) (2025-07-15)
+
+
+### Bug Fixes
+
+* update log message for MCP server startup ([d67312e](https://github.com/rfdez/pvpc-mcp-server/commit/d67312e6db0093f37e2a99ddf40b089582956d10))
+
 ## [2.0.1](https://github.com/rfdez/pvpc-mcp-server/compare/v2.0.0...v2.0.1) (2025-07-14)
 
 
