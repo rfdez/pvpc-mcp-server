@@ -9,7 +9,7 @@ async function main() {
 
 	await server.start();
 
-	console.log("MCP server is running...");
+	console.error("MCP Server is running on stdio");
 
 	process.on("SIGINT", async () => {
 		await server.stop();
