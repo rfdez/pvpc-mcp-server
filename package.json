@@ -38,19 +38,19 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@modelcontextprotocol/sdk": "1.15.1",
+		"@modelcontextprotocol/sdk": "1.16.0",
 		"date-fns": "4.1.0",
 		"zod": "3.25.76"
 	},
 	"devDependencies": {
 		"@eslint/js": "9.31.0",
-		"@types/node": "24.0.13",
+		"@types/node": "24.0.15",
 		"eslint": "9.31.0",
-		"eslint-config-prettier": "10.1.5",
+		"eslint-config-prettier": "10.1.8",
 		"prettier": "3.6.2",
 		"prettier-plugin-packagejson": "2.5.18",
 		"shx": "0.4.0",
 		"typescript": "5.8.3",
-		"typescript-eslint": "8.36.0"
+		"typescript-eslint": "8.37.0"
 	}
 }
