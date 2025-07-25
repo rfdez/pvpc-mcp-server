@@ -1,5 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import type { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import { endOfToday, startOfToday } from "date-fns";
 import * as z from "zod";
 import packageJson from "../package.json" with { type: "json" };
@@ -25,8 +25,7 @@ export class PvpcMcpServer {
 		this.registerTools();
 	}
 
-	async start(): Promise<void> {
-		const transport = new StdioServerTransport();
+	async start(transport: Transport): Promise<void> {
 		await this.server.connect(transport);
 	}
 
