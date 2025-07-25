@@ -61,25 +61,44 @@ async function runHttpServer(port: number) {
 		cors({
 			origin: "*",
 			methods: ["GET", "POST", "OPTIONS", "DELETE"],
-			allowedHeaders: [
-				"Content-Type",
-				"MCP-Session-Id",
-				"mcp-session-id",
-			],
+			exposedHeaders: ["Mcp-Session-Id"],
+			allowedHeaders: ["Content-Type", "mcp-session-id"],
 		}),
 	);
 
 	app.post("/mcp", async (req: Request, res: Response) => {
-		const transport = new StreamableHTTPServerTransport({
-			sessionIdGenerator: undefined,
-		});
+		try {
+			const transport = new StreamableHTTPServerTransport({
+				sessionIdGenerator: undefined,
+			});
 
-		await mcpServer.start(transport);
+			res.on("close", async () => {
+				await transport.close();
+				await mcpServer.stop();
+			});
 
-		await transport.handleRequest(req, res, req.body);
+			await mcpServer.start(transport);
+
+			await transport.handleRequest(req, res, req.body);
+		} catch (error) {
+			console.error("Error handling MCP request:", error);
+
+			if (!res.headersSent) {
+				res.status(500).json({
+					jsonrpc: "2.0",
+					id: null,
+					error: {
+						code: -32603,
+						message: "Internal server error.",
+					},
+				});
+			}
+		}
 	});
 
 	app.get("/mcp", (_req: Request, res: Response) => {
+		console.log("Received GET MCP request");
+
 		res.status(405).json({
 			jsonrpc: "2.0",
 			id: null,
@@ -91,6 +110,8 @@ async function runHttpServer(port: number) {
 	});
 
 	app.delete("/mcp", (_req: Request, res: Response) => {
+		console.log("Received DELETE MCP request");
+
 		res.status(405).json({
 			jsonrpc: "2.0",
 			id: null,
@@ -114,7 +135,7 @@ async function runHttpServer(port: number) {
 	process.on("SIGTERM", () => {
 		httpServer.close((err) => {
 			if (err) {
-				console.error("Error closing server:", err);
+				console.error("Error closing HTTP server:", err);
 
 				process.exit(1);
 			}
@@ -128,7 +149,8 @@ async function runStdioServer() {
 	const apiClient = new PvpcApiClient();
 	const mcpServer = new PvpcMcpServer(apiClient);
 
-	await mcpServer.start(new StdioServerTransport());
+	const transport = new StdioServerTransport();
+	await mcpServer.start(transport);
 
 	console.error("Server running on stdio");
 
