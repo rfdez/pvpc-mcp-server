@@ -121,7 +121,7 @@ Or if you are developing on it:
 ```bash
 cd path/to/pvpc-mcp-server
 npm run build:watch
-npx -y @modelcontextprotocol/inspector node --watch --env-file=.env dist/index.js
+npx -y @modelcontextprotocol/inspector -e ESIOS_API_KEY=your_esios_api_key node dist/index.js
 ```
 
 Remember to set the `ESIOS_API_KEY` environment variable before connecting to the MCP Server in the MCP inspector.
