@@ -44,7 +44,7 @@ Add this to your Claude Desktop `claude_desktop_config.json` file. See [Claude D
 ```json
 {
   "mcpServers": {
-    "Context7": {
+    "pfm": {
       "command": "npx",
       "args": ["-y", "@rfdez/pvpc-mcp-server@latest"],
       "env": {
@@ -121,7 +121,7 @@ Or if you are developing on it:
 ```bash
 cd path/to/pvpc-mcp-server
 npm run build:watch
-npx -y @modelcontextprotocol/inspector node --watch dist/index.js
+npx -y @modelcontextprotocol/inspector node --watch --env-file=.env dist/index.js
 ```
 
 Remember to set the `ESIOS_API_KEY` environment variable before connecting to the MCP Server in the MCP inspector.
