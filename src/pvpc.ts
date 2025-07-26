@@ -7,13 +7,6 @@ import type {
 } from "./interfaces.js";
 
 export class PvpcApiClient {
-	public static readonly GEOS = {
-		8741: "Península",
-		8742: "Canarias",
-		8743: "Baleares",
-		8744: "Ceuta",
-		8745: "Melilla",
-	} as const;
 	private static readonly PVPC_BASE_URL =
 		"https://api.esios.ree.es/indicators/1001";
 
