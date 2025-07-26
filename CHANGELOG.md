@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/rfdez/pvpc-mcp-server/compare/v2.0.2...v2.1.0) (2025-07-26)
+
+
+### Features
+
+* update price fetching parameters and interfaces for improved data handling ([c48df2c](https://github.com/rfdez/pvpc-mcp-server/commit/c48df2c1043cd0f3cafb29e38764b3e25317e14f))
+
+
+### Bug Fixes
+
+* revert version number to 2.1.0 in PvpcMcpServer ([a58ef32](https://github.com/rfdez/pvpc-mcp-server/commit/a58ef327e9ea489dd9d2e160656d7aba698956ee))
+
 ## [2.0.2](https://github.com/rfdez/pvpc-mcp-server/compare/v2.0.1...v2.0.2) (2025-07-15)
 
 
