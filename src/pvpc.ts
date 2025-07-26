@@ -1,3 +1,4 @@
+import QueryString from "qs";
 import { PvpcError, type PvpcErrorResponse } from "./error.js";
 import type {
 	FetchPricesParams,
@@ -96,32 +97,42 @@ export class PvpcApiClient {
 	}
 
 	async fetchPrices(params: FetchPricesParams): Promise<PvpcPrice[]> {
-		const requestQueryParams = new URLSearchParams({
+		const queryParams = {
 			locale: params.locale,
 			start_date: params.startDate,
 			end_date: params.endDate,
-			time_trunc: params.timeTrunc,
+			time_agg: params.timeAggregation,
+			time_trunc: params.timeTruncation,
+			geo_agg: params.geographicalAggregation,
+			geo_ids: params.geographicalIds,
+			geo_trunc: params.geographicalTruncation,
+		};
+
+		const stringQueryParams = QueryString.stringify(queryParams, {
+			arrayFormat: "brackets",
+			encode: false,
+			skipNulls: true,
 		});
 
-		const geoQueryParams = params.geoIds
-			.map((id) => `geo_ids[]=${id}`)
-			.join("&");
-
 		const response = await this.get<FetchPricesResponse>(
-			`?${requestQueryParams}${geoQueryParams.length > 0 ? `&${geoQueryParams}` : ""}`,
+			`?${stringQueryParams}`,
 		);
 
-		const currency = "EUR";
-		const magnitude = "Precio €/MWh";
+		const currencyCode = "EUR";
+		const currencySymbol = "€";
+		const magnitude = "€/MWh";
 
 		return response.indicator.values.map((v) => ({
-			price: v.value,
-			currency,
+			price: {
+				amount: v.value,
+				currencyCode,
+				currencySymbol,
+			},
 			magnitude,
 			datetime: v.datetime,
 			datetimeUtc: v.datetime_utc,
-			geoId: v.geo_id,
-			geoName: v.geo_name,
+			geographicalId: v.geo_id,
+			geographicalName: v.geo_name,
 			updatedAt: response.indicator.values_updated_at,
 		}));
 	}

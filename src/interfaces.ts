@@ -1,11 +1,14 @@
 export interface PvpcPrice {
-	price: number;
-	currency: string;
+	price: {
+		amount: number;
+		currencyCode: string;
+		currencySymbol: string;
+	};
 	magnitude: string;
 	datetime: string;
 	datetimeUtc: string;
-	geoId: number;
-	geoName: string;
+	geographicalId: number;
+	geographicalName: string;
 	updatedAt: string;
 }
 
@@ -26,6 +29,9 @@ export interface FetchPricesParams {
 	locale: string;
 	startDate: string;
 	endDate: string;
-	timeTrunc: string;
-	geoIds: number[];
+	timeAggregation: string;
+	timeTruncation?: string;
+	geographicalAggregation: string;
+	geographicalIds: number[];
+	geographicalTruncation?: string;
 }

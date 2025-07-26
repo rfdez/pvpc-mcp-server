@@ -13,7 +13,7 @@ export class PvpcMcpServer {
 			{
 				name: "pvpc-mcp-server",
 				title: "Voluntary Price for the Small Consumer (PVPC) MCP Server",
-				version: "2.0.2",
+				version: "2.3.0",
 			},
 			{
 				instructions:
@@ -45,56 +45,72 @@ export class PvpcMcpServer {
 						.enum(["es", "en"])
 						.default("es")
 						.describe(
-							"Defines the response language. Accepted values: `es`, `en`. Defaults to `es`.",
+							"Get translations for sources. Accepted values: `es`, `en`. Defaults to `es`.",
 						),
 					startDate: z
 						.string()
 						.default(startOfToday().toISOString())
 						.describe(
-							"Defines the starting date in iso8601 format. E.g. 2025-06-29T00:00:00.000+02:00. Defaults to the start of today.",
+							"Beginning of the date range to filter indicator values in iso8601 format. E.g. 2025-06-29T00:00:00.000+02:00. Defaults to the start of today.",
 						),
 					endDate: z
 						.string()
 						.default(endOfToday().toISOString())
 						.describe(
-							"Defines the ending date in iso8601 format. E.g. 2025-06-29T23:59:59.999+02:00. Defaults to the end of today.",
+							"End of the date range to filter indicator values in iso8601 format. E.g. 2025-06-29T23:59:59.999+02:00. Defaults to the end of today.",
 						),
-					timeTrunc: z
-						.enum([
-							"five_minutes",
-							"ten_minutes",
-							"fifteen_minutes",
-							"hour",
-							"day",
-							"month",
-							"year",
-						])
-						.default("hour")
+					timeAggregation: z
+						.enum(["sum", "average"])
+						.default("sum")
 						.describe(
-							"Defines the time aggregation of the requested data. Accepted values: `five_minutes`, `ten_minutes`, `fifteen_minutes`, `hour`, `day`, `month`, `year`. Defaults to `hour`.",
+							"How to aggregate indicator values when grouping them by time. Accepted values: `sum`, `average`. Defaults to `sum`.",
 						),
-					geoIds: z
+					timeTruncation: z
+						.enum(["hour", "day", "month", "year"])
+						.optional()
+						.describe(
+							"Tells how to truncate data time series. Accepted values: `hour`, `day`, `month`, `year`.",
+						),
+					geographicalAggregation: z
+						.enum(["sum", "average"])
+						.default("sum")
+						.describe(
+							"How to aggregate indicator values when grouping them by geographical ID. Accepted values: `sum`, `average`. Defaults to `sum`.",
+						),
+					geographicalIds: z
 						.array(z.number())
-						.default(Object.keys(PvpcApiClient.GEOS).map(Number))
+						.default([8741, 8742, 8743, 8744, 8745])
 						.describe(
-							`Defines the geographical IDs to filter the prices. Available IDs: ${Object.entries(
-								PvpcApiClient.GEOS,
-							)
-								.map(([id, name]) => `${id} (${name})`)
-								.join(
-									", ",
-								)}. Defaults to all available geographical IDs.`,
+							"Tells the geographical IDs to filter indicator values. Accepted values: `3` (España), `8741` (Península), `8742` (Canarias), `8743` (Baleares), `8744` (Ceuta), `8745` (Melilla). Defaults to `8741`, `8742`, `8743`, `8744`, `8745`.",
+						),
+					geographicalTruncation: z
+						.enum(["country", "electric_system"])
+						.optional()
+						.describe(
+							"Tells how to group data at geographical level when the geographical aggregation is informed. Accepted values: `country`, `electric_system`.",
 						),
 				},
 			},
-			async ({ locale, startDate, endDate, timeTrunc, geoIds }) => {
+			async ({
+				locale,
+				startDate,
+				endDate,
+				timeAggregation,
+				timeTruncation,
+				geographicalAggregation,
+				geographicalIds,
+				geographicalTruncation,
+			}) => {
 				try {
 					const prices = await this.apiClient.fetchPrices({
 						locale,
 						startDate,
 						endDate,
-						timeTrunc,
-						geoIds,
+						timeAggregation,
+						timeTruncation,
+						geographicalAggregation,
+						geographicalIds,
+						geographicalTruncation,
 					});
 
 					return {
