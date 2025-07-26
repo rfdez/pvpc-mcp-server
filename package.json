@@ -31,6 +31,7 @@
 	"scripts": {
 		"build": "tsc && shx chmod +x dist/index.js",
 		"build:watch": "tsc --watch --preserveWatchOutput",
+		"clean": "rimraf dist",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"lint": "eslint .",
@@ -49,6 +50,7 @@
 		"eslint-config-prettier": "10.1.8",
 		"prettier": "3.6.2",
 		"prettier-plugin-packagejson": "2.5.19",
+		"rimraf": "6.0.1",
 		"shx": "0.4.0",
 		"typescript": "5.8.3",
 		"typescript-eslint": "8.38.0"
