@@ -13,7 +13,6 @@
 		"noImplicitOverride": true,
 		"module": "NodeNext",
 		"outDir": "dist",
-		"rootDir": "src",
 		"lib": ["es2022"]
 	},
 	"include": ["src/**/*.ts"],

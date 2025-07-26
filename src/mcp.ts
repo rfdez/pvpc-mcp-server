@@ -2,7 +2,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { endOfToday, startOfToday } from "date-fns";
 import * as z from "zod";
-import packageJson from "../package.json" with { type: "json" };
 import { PvpcError } from "./error.js";
 import { PvpcApiClient } from "./pvpc.js";
 
@@ -14,7 +13,7 @@ export class PvpcMcpServer {
 			{
 				name: "pvpc-mcp-server",
 				title: "Voluntary Price for the Small Consumer (PVPC) MCP Server",
-				version: packageJson.version,
+				version: "2.0.2",
 			},
 			{
 				instructions:
