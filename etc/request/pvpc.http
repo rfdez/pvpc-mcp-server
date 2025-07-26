@@ -1,0 +1,13 @@
+### Fetch the Voluntary Price for the Small Consumer (PVPC)
+GET https://api.esios.ree.es/indicators/1001
+	?locale=es
+	&start_date=2025-07-25T22:00:00.000Z
+	&end_date=2025-07-26T21:59:59.999Z
+	&time_agg=sum
+	# &time_trunc=hour
+	&geo_agg=sum
+	&geo_ids[]=8741
+	# &geo_trunc=electric_system
+Accept: application/json; application/vnd.esios-api-v1+json
+Content-Type: application/json
+x-api-key: {{$dotenv ESIOS_API_KEY}}

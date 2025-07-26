@@ -1,11 +1,10 @@
 .git
 .github
 dist
+etc
 node_modules
 .dockerignore
 .editorconfig
-.env
-.env.example
 .gitignore
 .node-version
 .npmrc
