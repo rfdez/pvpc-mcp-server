@@ -12,11 +12,14 @@ Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red E
 
 - `fetch_prices`: Fetches the Voluntary Price for the Small Consumer (PVPC) prices for a given date range and geographical area.
   - Inputs:
-    - `locale`: Defines the response language. Accepted values: `es`, `en`. Defaults to `es`.
-    - `startDate`: Defines the starting date in iso8601 format. E.g. 2025-06-29T00:00:00.000+02:00. Defaults to the start of today.
-    - `endDate`: Defines the ending date in iso8601 format. E.g. 2025-06-29T23:59:59.999+02:00. Defaults to the end of today.
-    - `timeTrunc`: Defines the time aggregation of the requested data. Accepted values: `five_minutes`, `ten_minutes`, `fifteen_minutes`, `hour`, `day`, `month`, `year`. Defaults to `hour`.
-    - `geoIds`: Defines the geographical IDs to filter the prices. Available IDs: 8741 (Península), 8742 (Canarias), 8743 (Baleares), 8744 (Ceuta), 8745 (Melilla). Defaults to all available geographical IDs.
+    - `locale`: Get translations for sources. Accepted values: `es`, `en`. Defaults to `es`.
+    - `startDate`: Beginning of the date range to filter indicator values in iso8601 format. E.g. 2025-06-29T00:00:00.000+02:00. Defaults to the start of today.
+    - `endDate`: End of the date range to filter indicator values in iso8601 format. E.g. 2025-06-29T23:59:59.999+02:00. Defaults to the end of today.
+    - `timeAggregation`: How to aggregate indicator values when grouping them by time. Accepted values: `sum`, `average`. Defaults to `sum`.
+    - `timeTruncation`: Tells how to truncate data time series. Accepted values: `hour`, `day`, `month`, `year`. Optional parameter.
+    - `geographicalAggregation`: How to aggregate indicator values when grouping them by geographical ID. Accepted values: `sum`, `average`. Defaults to `sum`.
+    - `geographicalIds`: Tells the geographical IDs to filter indicator values. Accepted values: `3` (España), `8741` (Península), `8742` (Canarias), `8743` (Baleares), `8744` (Ceuta), `8745` (Melilla). Defaults to `8741`, `8742`, `8743`, `8744`, `8745`.
+    - `geographicalTruncation`: Tells how to group data at geographical level when the geographical aggregation is informed. Accepted values: `country`, `electric_system`. Optional parameter.
   - Returns: Text content with the PVPC prices in JSON format.
 
 ## Configuration
