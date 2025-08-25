@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.2.0](https://github.com/rfdez/pvpc-mcp-server/compare/v2.1.0...v2.2.0) (2025-08-25)
+
+
+### Features
+
+* add HTTP transport support and update server commands ([12b2b83](https://github.com/rfdez/pvpc-mcp-server/commit/12b2b8373036d81efe8ad267c181d071b8f4c804))
+* add streamable http transport ([f9d6200](https://github.com/rfdez/pvpc-mcp-server/commit/f9d62009b79a84d90e5925c21d649e77c098552e))
+* update smithery.yaml to support streamable HTTP transport ([cca9512](https://github.com/rfdez/pvpc-mcp-server/commit/cca9512aa14f82c0cc8dbe3264fd47fcd8b173e0))
+
+
+### Bug Fixes
+
+* improve error handling and logging in HTTP server ([81f0a51](https://github.com/rfdez/pvpc-mcp-server/commit/81f0a512a09dcd2503d1346a574c59344d7f7d4d))
+
 ## [2.1.0](https://github.com/rfdez/pvpc-mcp-server/compare/v2.0.2...v2.1.0) (2025-07-26)
 
 
