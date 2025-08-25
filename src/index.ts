@@ -5,6 +5,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { Command, Option } from "commander";
 import cors from "cors";
 import express, { type Request, type Response } from "express";
+import helmet from "helmet";
 import { PvpcMcpServer } from "./mcp.js";
 import { PvpcApiClient } from "./pvpc.js";
 
@@ -57,6 +58,7 @@ async function runHttpServer(port: number) {
 	const app = express();
 
 	app.use(express.json());
+	app.use(helmet());
 	app.use(
 		cors({
 			origin: "*",
@@ -97,8 +99,6 @@ async function runHttpServer(port: number) {
 	});
 
 	app.get("/mcp", (_req: Request, res: Response) => {
-		console.log("Received GET MCP request");
-
 		res.status(405).json({
 			jsonrpc: "2.0",
 			id: null,
@@ -110,8 +110,6 @@ async function runHttpServer(port: number) {
 	});
 
 	app.delete("/mcp", (_req: Request, res: Response) => {
-		console.log("Received DELETE MCP request");
-
 		res.status(405).json({
 			jsonrpc: "2.0",
 			id: null,
