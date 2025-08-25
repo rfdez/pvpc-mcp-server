@@ -1,3 +1,4 @@
+# TODO: Update the smithery.yaml file to support the new streamable HTTP transport
 runtime: container
 startCommand:
   type: stdio

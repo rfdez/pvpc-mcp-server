@@ -17,4 +17,5 @@ RUN --mount=type=bind,source=package.json,target=/app/package.json \
 COPY --chown=node:node --from=build /app/dist /app/dist
 ENV NODE_ENV=production
 USER node
-CMD ["node", "/app/dist/index.js"]
+EXPOSE 8080
+CMD ["node", "/app/dist/index.js", "--transport", "http", "--port", "8080"]
