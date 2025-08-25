@@ -1,6 +1,9 @@
 runtime: container
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
 startCommand:
-  type: stdio
+  type: http
   configSchema:
     type: object
     properties:
@@ -12,15 +15,3 @@ startCommand:
       - apiKey
   exampleConfig:
     apiKey: YOUR_ESIOS_API_KEY
-  commandFunction:
-    |-
-    config => ({
-      command: 'node',
-      args: ['/app/dist/index.js'],
-      env: {
-        ESIOS_API_KEY: config.apiKey
-      }
-    })
-build:
-  dockerfile: Dockerfile
-  dockerBuildPath: .

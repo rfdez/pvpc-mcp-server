@@ -29,7 +29,7 @@ export class PvpcApiClient {
 		this.headers = new Headers({
 			Accept: "application/json; application/vnd.esios-api-v1+json",
 			"Content-Type": "application/json",
-			"x-api-key": this.key,
+			"x-api-key": this.key as string,
 		});
 	}
 
