@@ -13,7 +13,7 @@ export class PvpcMcpServer {
 			{
 				name: "pvpc-mcp-server",
 				title: "Voluntary Price for the Small Consumer (PVPC) MCP Server",
-				version: "3.0.0",
+				version: "3.1.0",
 			},
 			{
 				instructions:
@@ -89,6 +89,23 @@ export class PvpcMcpServer {
 							"Tells how to group data at geographical level when the geographical aggregation is informed. Accepted values: `country`, `electric_system`.",
 						),
 				},
+				outputSchema: {
+					prices: z.array(
+						z.object({
+							price: z.object({
+								amount: z.number(),
+								currencyCode: z.string(),
+								currencySymbol: z.string(),
+							}),
+							magnitude: z.string(),
+							datetime: z.string(),
+							datetimeUtc: z.string(),
+							geographicalId: z.number(),
+							geographicalName: z.string(),
+							updatedAt: z.string(),
+						}),
+					),
+				},
 			},
 			async ({
 				locale,
@@ -116,9 +133,12 @@ export class PvpcMcpServer {
 						content: [
 							{
 								type: "text",
-								text: JSON.stringify(prices, null, 2),
+								text: JSON.stringify({ prices }, null, 2),
 							},
 						],
+						structuredContent: {
+							prices,
+						},
 					};
 				} catch (error) {
 					if (error instanceof PvpcError) {
