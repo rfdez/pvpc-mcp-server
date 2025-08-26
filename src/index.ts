@@ -6,6 +6,7 @@ import { Command, Option } from "commander";
 import cors from "cors";
 import express, { type Request, type Response } from "express";
 import helmet from "helmet";
+import { pinoHttp } from "pino-http";
 import { PvpcMcpServer } from "./mcp.js";
 import { PvpcApiClient } from "./pvpc.js";
 import { extractBearerToken, extractHeaderValue } from "./utils.js";
@@ -78,6 +79,28 @@ async function runHttpServer(port: number) {
 			methods: ["GET", "POST", "OPTIONS", "DELETE"],
 			exposedHeaders: ["Mcp-Session-Id"],
 			allowedHeaders: ["Content-Type", "mcp-session-id"],
+		}),
+	);
+	app.use(
+		pinoHttp({
+			transport:
+				process.env.NODE_ENV === "development"
+					? {
+							target: "pino-pretty",
+							options: {
+								colorize: true,
+							},
+						}
+					: undefined,
+			redact: {
+				paths: [
+					"req.headers",
+					"res.headers",
+					"req.remoteAddress",
+					"req.remotePort",
+				],
+				remove: true,
+			},
 		}),
 	);
 
