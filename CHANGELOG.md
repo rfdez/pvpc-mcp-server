@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.2.0](https://github.com/rfdez/pvpc-mcp-server/compare/v3.1.0...v3.2.0) (2025-08-26)
+
+
+### Features
+
+* add /ping endpoint for health check ([47948f8](https://github.com/rfdez/pvpc-mcp-server/commit/47948f820404d8c0b2dd6ba859180946b298c870))
+
+
+### Bug Fixes
+
+* update mcp version ([7d940c2](https://github.com/rfdez/pvpc-mcp-server/commit/7d940c25db2fdaf4c4d0a3214712edcdafcbc57b))
+
 ## [3.1.0](https://github.com/rfdez/pvpc-mcp-server/compare/v3.0.0...v3.1.0) (2025-08-26)
 
 
