@@ -81,6 +81,10 @@ async function runHttpServer(port: number) {
 		}),
 	);
 
+	app.get("/ping", (_req: Request, res: Response) => {
+		res.status(200).send("pong");
+	});
+
 	app.post("/mcp", async (req: Request, res: Response) => {
 		// Check headers in order of preference
 		const apiKey =
