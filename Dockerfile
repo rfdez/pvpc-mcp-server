@@ -15,7 +15,7 @@ RUN --mount=type=bind,source=package.json,target=/app/package.json \
     --mount=type=cache,target=/root/.npm \
     npm ci --omit=dev
 COPY --chown=node:node --from=build /app/dist /app/dist
-ENV NODE_ENV=production
+ENV PORT=8080 NODE_ENV=production
 USER node
-EXPOSE 8080
-CMD ["node", "/app/dist/index.js", "--transport", "http", "--port", "8080"]
+EXPOSE $PORT
+CMD ["node", "/app/dist/index.js", "--transport", "http", "--port", "$PORT"]

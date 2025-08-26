@@ -30,7 +30,6 @@
 	],
 	"scripts": {
 		"build": "tsc && shx chmod +x dist/index.js",
-		"build:watch": "tsc --watch --preserveWatchOutput",
 		"clean": "shx rm -rf dist",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",

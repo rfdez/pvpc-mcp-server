@@ -13,23 +13,10 @@ export class PvpcApiClient {
 	private readonly headers: Headers;
 
 	constructor(private readonly key?: string) {
-		if (!key) {
-			this.key = process.env.ESIOS_API_KEY;
-
-			if (!this.key) {
-				throw new Error(
-					`Missing API key. See https://api.esios.ree.es/doc/index.html.
-					Pass it to the constructor \`new PvpcApiClient("123")\`
-					or set the environment variable \`ESIOS_API_KEY\` with your API key.
-					`,
-				);
-			}
-		}
-
 		this.headers = new Headers({
 			Accept: "application/json; application/vnd.esios-api-v1+json",
 			"Content-Type": "application/json",
-			"x-api-key": this.key as string,
+			"x-api-key": this.key ?? "",
 		});
 	}
 

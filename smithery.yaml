@@ -4,14 +4,3 @@ build:
   dockerBuildPath: .
 startCommand:
   type: http
-  configSchema:
-    type: object
-    properties:
-      apiKey:
-        type: string
-        title: Esios Red Eléctrica de España API Key
-        description: Your Esios Red Eléctrica de España API key for accessing the service.
-    required:
-      - apiKey
-  exampleConfig:
-    apiKey: YOUR_ESIOS_API_KEY

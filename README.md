@@ -6,7 +6,7 @@
 
 Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica at 8:15 p.m. This includes the hourly electricity tariffs that will apply the following day for consumers billed under the 2.0 TD tariff.
 
-## Components
+## 🧩 Components
 
 ### Tools
 
@@ -22,11 +22,11 @@ Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red E
     - `geographicalTruncation`: Tells how to group data at geographical level when the geographical aggregation is informed. Accepted values: `country`, `electric_system`. Optional parameter.
   - Returns: Text content with the PVPC prices in JSON format.
 
-## Configuration
+## 🔧 Configuration
 
 ### Requirements
 
-You need to register an API key from [Esios Red Eléctrica de España](https://www.esios.ree.es/es/pagina/api) to access the Esios Red Eléctrica de España API. Once you have the API key, set it in your environment variables as `ESIOS_API_KEY`.
+You need to register an API key from [Esios Red Eléctrica de España](https://www.esios.ree.es/es/pagina/api) to access the Esios Red Eléctrica de España API.
 
 You will find the API documentation at [API e·sios Documentation](https://api.esios.ree.es/).
 
@@ -42,94 +42,83 @@ You can find your Smithery profile and key in the [Smithery.ai webpage](https://
 
 ### Claude Desktop
 
+#### Remote Server Connection
+
+Open Claude Desktop and navigate to `Settings > Connectors > Add Custom Connector`. Enter the name as `PVPC` and the remote MCP server URL like `https://mcp.example.com/mcp`.
+
+#### Local Server Connection
+
 Add this to your Claude Desktop `claude_desktop_config.json` file. See [Claude Desktop MCP docs](https://modelcontextprotocol.io/quickstart/user) for more info.
 
 ```json
 {
   "mcpServers": {
-    "pfm": {
+    "pvpc": {
       "command": "npx",
-      "args": ["-y", "@rfdez/pvpc-mcp-server@latest"],
-      "env": {
-        "ESIOS_API_KEY": "your_esios_api_key"
-      }
+      "args": ["-y", "@rfdez/pvpc-mcp-server@latest", "--api-key", "your_esios_api_key"]
     }
   }
 }
 ```
 
-## Development
+## 💻 Development
 
-If you are doing local development, there are two ways to test your changes:
-
-1. Run the MCP inspector to test your changes. See [Debugging](#debugging) for run instructions.
-2. Test using the Claude desktop app. Add the following to your `claude_desktop_config.json`:
-
-### Docker
-
-You need to build the Docker image first:
+Clone this repository and install the dependencies:
 
 ```bash
-docker build -t pvpc-mcp-server .
+npm install
 ```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+Run the server:
+
+```bash
+node dist/index.js
+```
+
+### CLI Arguments
+
+`pvpc-mcp-server` accepts the following CLI flags:
+
+- `--transport <stdio|http>`: Transport to use (`stdio` by default).
+- `--port <number>`: Port to listen on when using `http` transport (default `8080`).
+- `--api-key <key>`: Your e·sios API key for authentication.
+
+Example with http transport and port 8080:
+
+```bash
+node dist/index.js --transport http --port 8080
+```
+
+Example with stdio transport:
+
+```bash
+node dist/index.js --transport stdio --api-key YOUR_ESIOS_API_KEY
+```
+
+### Local Configuration Example
 
 ```json
 {
   "mcpServers": {
     "pvpc": {
-      "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-i",
-        "pvpc-mcp-server"
-      ],
-      "env": {
-        "ESIOS_API_KEY": "your_esios_api_key"
-      }
-    }
-  }
-}
-```
-
-### NPX
-
-```json
-{
-  "mcpServers": {
-    "pvpc": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@rfdez/pvpc-mcp-server@latest"
-      ],
-      "env": {
-        "ESIOS_API_KEY": "your_esios_api_key"
-      }
+      "args": ["-y", "tsx", "/path/to/folder/pvpc-mcp-server/src/index.ts", "--api-key", "YOUR_ESIOS_API_KEY"]
     }
   }
 }
 ```
 
-## Debugging
-
-You can use the MCP inspector to debug the server. For npx installations:
+### Testing with MCP Inspector
 
 ```bash
-npx -y @modelcontextprotocol/inspector npx -y @rfdez/pvpc-mcp-server@latest
+npx -y @modelcontextprotocol/inspector npx -y @rfdez/pvpc-mcp-server
 ```
-
-Or if you are developing on it:
-
-```bash
-cd path/to/pvpc-mcp-server
-npm run build:watch
-npx -y @modelcontextprotocol/inspector -e ESIOS_API_KEY=your_esios_api_key node dist/index.js
-```
-
-Remember to set the `ESIOS_API_KEY` environment variable before connecting to the MCP Server in the MCP inspector.
-
-Running `tail -n 20 -f ~/Library/Logs/Claude/mcp*.log` will show the logs from the server and may help you debug any issues.
 
 ## License
 

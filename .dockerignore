@@ -1,7 +1,6 @@
 .git
 .github
 dist
-etc
 node_modules
 .dockerignore
 .editorconfig

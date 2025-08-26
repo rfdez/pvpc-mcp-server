@@ -8,28 +8,44 @@ import express, { type Request, type Response } from "express";
 import helmet from "helmet";
 import { PvpcMcpServer } from "./mcp.js";
 import { PvpcApiClient } from "./pvpc.js";
+import { extractBearerToken, extractHeaderValue } from "./utils.js";
+
+const program = new Command()
+	.addOption(
+		new Option("--transport <type>", "transport type")
+			.choices(["stdio", "http"])
+			.default("stdio"),
+	)
+	.addOption(
+		new Option("--port <number>", "port for HTTP transport")
+			.implies({ transport: "http" })
+			.env("PORT")
+			.default("8080"),
+	)
+	.addOption(
+		new Option("--api-key <key>", "ESIOS API key for authentication")
+			.implies({ transport: "stdio" })
+			.conflicts("port")
+			.env("ESIOS_API_KEY"),
+	)
+	.allowUnknownOption() // let MCP Inspector / other wrappers pass through extra flags
+	.parse(process.argv);
+
+const options = program.opts<{
+	transport: "stdio" | "http";
+	port: string;
+	apiKey?: string;
+	[option: string]: unknown;
+}>();
 
 async function main() {
-	const program = new Command()
-		.addOption(
-			new Option("--transport <type>", "transport type")
-				.choices(["stdio", "http"])
-				.default("stdio"),
-		)
-		.option("--port [number]", "port for HTTP transport", "8080")
-		.allowUnknownOption()
-		.parse(process.argv);
+	if (options.transport === "http") {
+		const defaultPort = 8080;
+		const port = parseInt(options.port, 10);
 
-	const options = program.opts<{
-		transport: "stdio" | "http";
-		port: string;
-		[option: string]: unknown;
-	}>();
-
-	if (options.transport !== "http") {
-		await runHttpServer(parseInt(options.port, 10));
+		await runHttpServer(isNaN(port) ? defaultPort : port);
 	} else {
-		await runStdioServer();
+		await runStdioServer(options.apiKey);
 	}
 }
 
@@ -52,9 +68,6 @@ process.on("uncaughtException", (error) => {
 });
 
 async function runHttpServer(port: number) {
-	const apiClient = new PvpcApiClient();
-	const mcpServer = new PvpcMcpServer(apiClient);
-
 	const app = express();
 
 	app.use(express.json());
@@ -70,6 +83,20 @@ async function runHttpServer(port: number) {
 
 	app.post("/mcp", async (req: Request, res: Response) => {
 		try {
+			// Check headers in order of preference
+			const apiKey =
+				extractBearerToken(req.headers.authorization) ||
+				extractHeaderValue(req.headers["Esios-API-Key"]) ||
+				extractHeaderValue(req.headers["X-API-Key"]) ||
+				extractHeaderValue(req.headers["esios-api-key"]) ||
+				extractHeaderValue(req.headers["x-api-key"]) ||
+				extractHeaderValue(req.headers["Esios_API_Key"]) ||
+				extractHeaderValue(req.headers["X_API_Key"]) ||
+				extractHeaderValue(req.headers["esios_api_key"]) ||
+				extractHeaderValue(req.headers["x_api_key"]);
+
+			const apiClient = new PvpcApiClient(apiKey);
+			const mcpServer = new PvpcMcpServer(apiClient);
 			const transport = new StreamableHTTPServerTransport({
 				sessionIdGenerator: undefined,
 			});
@@ -120,8 +147,8 @@ async function runHttpServer(port: number) {
 		});
 	});
 
-	const httpServer = app.listen(port, "0.0.0.0", () => {
-		console.error(`Server is running on http://localhost:${port}/mcp`);
+	const httpServer = app.listen(port, () => {
+		console.log(`Server is running on http://localhost:${port}/mcp`);
 	});
 
 	process.on("SIGINT", () => {
@@ -143,8 +170,8 @@ async function runHttpServer(port: number) {
 	});
 }
 
-async function runStdioServer() {
-	const apiClient = new PvpcApiClient();
+async function runStdioServer(apiKey?: string) {
+	const apiClient = new PvpcApiClient(apiKey);
 	const mcpServer = new PvpcMcpServer(apiClient);
 
 	const transport = new StdioServerTransport();
