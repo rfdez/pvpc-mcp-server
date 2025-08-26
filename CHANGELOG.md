@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.0](https://github.com/rfdez/pvpc-mcp-server/compare/v3.0.0...v3.1.0) (2025-08-26)
+
+
+### Features
+
+* add output schema for prices in PvpcMcpServer ([db3513e](https://github.com/rfdez/pvpc-mcp-server/commit/db3513e6fd26590782b82e16beccb90651d016f2))
+* add pino-http and pino-pretty for enhanced logging ([25e0651](https://github.com/rfdez/pvpc-mcp-server/commit/25e065162c2b7ccc268a088051d48f6f076be977))
+
 ## [3.0.0](https://github.com/rfdez/pvpc-mcp-server/compare/v2.2.0...v3.0.0) (2025-08-26)
 
 
