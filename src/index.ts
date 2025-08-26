@@ -6,7 +6,6 @@ import { Command, Option } from "commander";
 import cors from "cors";
 import express, { type Request, type Response } from "express";
 import helmet from "helmet";
-import { pinoHttp } from "pino-http";
 import { PvpcMcpServer } from "./mcp.js";
 import { PvpcApiClient } from "./pvpc.js";
 import { extractBearerToken, extractHeaderValue } from "./utils.js";
@@ -81,49 +80,27 @@ async function runHttpServer(port: number) {
 			allowedHeaders: ["Content-Type", "mcp-session-id"],
 		}),
 	);
-	app.use(
-		pinoHttp({
-			transport:
-				process.env.NODE_ENV === "development"
-					? {
-							target: "pino-pretty",
-							options: {
-								colorize: true,
-							},
-						}
-					: undefined,
-			redact: {
-				paths: [
-					"req.headers",
-					"res.headers",
-					"req.remoteAddress",
-					"req.remotePort",
-				],
-				remove: true,
-			},
-		}),
-	);
 
 	app.post("/mcp", async (req: Request, res: Response) => {
+		// Check headers in order of preference
+		const apiKey =
+			extractBearerToken(req.headers.authorization) ||
+			extractHeaderValue(req.headers["Esios-API-Key"]) ||
+			extractHeaderValue(req.headers["X-API-Key"]) ||
+			extractHeaderValue(req.headers["esios-api-key"]) ||
+			extractHeaderValue(req.headers["x-api-key"]) ||
+			extractHeaderValue(req.headers["Esios_API_Key"]) ||
+			extractHeaderValue(req.headers["X_API_Key"]) ||
+			extractHeaderValue(req.headers["esios_api_key"]) ||
+			extractHeaderValue(req.headers["x_api_key"]);
+
+		const apiClient = new PvpcApiClient(apiKey);
+		const mcpServer = new PvpcMcpServer(apiClient);
+		const transport = new StreamableHTTPServerTransport({
+			sessionIdGenerator: undefined,
+		});
+
 		try {
-			// Check headers in order of preference
-			const apiKey =
-				extractBearerToken(req.headers.authorization) ||
-				extractHeaderValue(req.headers["Esios-API-Key"]) ||
-				extractHeaderValue(req.headers["X-API-Key"]) ||
-				extractHeaderValue(req.headers["esios-api-key"]) ||
-				extractHeaderValue(req.headers["x-api-key"]) ||
-				extractHeaderValue(req.headers["Esios_API_Key"]) ||
-				extractHeaderValue(req.headers["X_API_Key"]) ||
-				extractHeaderValue(req.headers["esios_api_key"]) ||
-				extractHeaderValue(req.headers["x_api_key"]);
-
-			const apiClient = new PvpcApiClient(apiKey);
-			const mcpServer = new PvpcMcpServer(apiClient);
-			const transport = new StreamableHTTPServerTransport({
-				sessionIdGenerator: undefined,
-			});
-
 			res.on("close", async () => {
 				await transport.close();
 				await mcpServer.stop();

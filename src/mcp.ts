@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import { endOfToday, startOfToday } from "date-fns";
-import * as z from "zod";
+import { z } from "zod";
 import { PvpcError } from "./error.js";
 import { PvpcApiClient } from "./pvpc.js";
 
