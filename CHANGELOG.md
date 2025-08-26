@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/rfdez/pvpc-mcp-server/compare/v2.2.0...v3.0.0) (2025-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* enhance server configuration and API key handling
+
+### Features
+
+* enhance server configuration and API key handling ([9a1c6f1](https://github.com/rfdez/pvpc-mcp-server/commit/9a1c6f1ba11fbf1cd6bac8c2c2f938b2914c06c6))
+
 ## [2.2.0](https://github.com/rfdez/pvpc-mcp-server/compare/v2.1.0...v2.2.0) (2025-08-25)
 
 
