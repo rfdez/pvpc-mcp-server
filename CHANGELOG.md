@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.3](https://github.com/rfdez/pvpc-mcp-server/compare/v3.2.2...v3.2.3) (2025-09-10)
+
+
+### Miscellaneous Chores
+
+* release 3.2.3 ([640cf1b](https://github.com/rfdez/pvpc-mcp-server/commit/640cf1b29ef690b09588c1bb2bff35eb690fbcd3))
+
 ## [3.2.2](https://github.com/rfdez/pvpc-mcp-server/compare/v3.2.1...v3.2.2) (2025-09-10)
 
 
