@@ -1,0 +1,71 @@
+{
+	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+	"name": "io.github.rfdez/pvpc-mcp-server",
+	"description": "Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica.",
+	"status": "active",
+	"repository": {
+		"url": "https://github.com/rfdez/pvpc-mcp-server",
+		"source": "github"
+	},
+	"version": "3.2.2",
+	"packages": [
+		{
+			"registry_type": "npm",
+			"registry_base_url": "https://registry.npmjs.org",
+			"identifier": "@rfdez/pvpc-mcp-server",
+			"version": "3.2.2",
+			"runtime_hint": "npx",
+			"transport": {
+				"type": "stdio"
+			},
+			"package_arguments": [
+				{
+					"type": "named",
+					"name": "--transport",
+					"description": "Use stdio transport type for MCP server",
+					"value": "stdio"
+				},
+				{
+					"type": "named",
+					"name": "--api-key",
+					"description": "ESIOS API key for authentication",
+					"is_required": true,
+					"is_secret": true
+				}
+			]
+		},
+		{
+			"registry_type": "npm",
+			"registry_base_url": "https://registry.npmjs.org",
+			"identifier": "@rfdez/pvpc-mcp-server",
+			"version": "3.2.2",
+			"runtime_hint": "npx",
+			"transport": {
+				"type": "streamable-http",
+				"url": "http://127.0.0.1:{--port}/mcp",
+				"headers": [
+					{
+						"name": "X-API-Key",
+						"description": "ESIOS API key for authentication",
+						"is_required": true,
+						"is_secret": true
+					}
+				]
+			},
+			"package_arguments": [
+				{
+					"type": "named",
+					"name": "--transport",
+					"description": "Use HTTP transport type for MCP server",
+					"value": "http"
+				},
+				{
+					"type": "named",
+					"name": "--port",
+					"description": "Port for HTTP transport",
+					"default": "8080"
+				}
+			]
+		}
+	]
+}
