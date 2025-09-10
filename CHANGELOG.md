@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.1](https://github.com/rfdez/pvpc-mcp-server/compare/v3.2.0...v3.2.1) (2025-09-10)
+
+
+### Bug Fixes
+
+* remove redundant environment variable assignment for API key option ([6710c3a](https://github.com/rfdez/pvpc-mcp-server/commit/6710c3a571491bbc535caa5b1c4e776a0f81aeda))
+
 ## [3.2.0](https://github.com/rfdez/pvpc-mcp-server/compare/v3.1.0...v3.2.0) (2025-08-26)
 
 
