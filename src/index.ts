@@ -25,8 +25,7 @@ const program = new Command()
 	.addOption(
 		new Option("--api-key <key>", "ESIOS API key for authentication")
 			.implies({ transport: "stdio" })
-			.conflicts("port")
-			.env("ESIOS_API_KEY"),
+			.conflicts("port"),
 	)
 	.allowUnknownOption() // let MCP Inspector / other wrappers pass through extra flags
 	.parse(process.argv);
