@@ -1,7 +1,7 @@
 {
 	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
 	"name": "io.github.rfdez/pvpc-mcp-server",
-	"description": "Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica.",
+	"description": "Retrieve daily PVPC electricity tariffs for 2.0 TD consumers, published by Red Eléctrica.",
 	"status": "active",
 	"repository": {
 		"url": "https://github.com/rfdez/pvpc-mcp-server",

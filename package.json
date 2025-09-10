@@ -1,7 +1,7 @@
 {
 	"name": "@rfdez/pvpc-mcp-server",
 	"version": "3.2.2",
-	"description": "Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica at 8:15 p.m. This includes the hourly electricity tariffs that will apply the following day for consumers billed under the 2.0 TD tariff.",
+	"description": "Retrieve daily PVPC electricity tariffs for 2.0 TD consumers, published by Red Eléctrica.",
 	"keywords": [
 		"pvpc",
 		"mcp",
