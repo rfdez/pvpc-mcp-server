@@ -1,6 +1,6 @@
 {
 	"name": "@rfdez/pvpc-mcp-server",
-	"version": "3.2.3",
+	"version": "3.2.4",
 	"description": "Retrieve daily PVPC electricity tariffs for 2.0 TD consumers, published by Red Eléctrica.",
 	"keywords": [
 		"pvpc",
