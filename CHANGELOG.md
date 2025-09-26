@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.2.4](https://github.com/rfdez/pvpc-mcp-server/compare/v3.2.3...v3.2.4) (2025-09-26)
+
+
+### Bug Fixes
+
+* **cors:** update allowed methods and headers for HTTP server ([81c8242](https://github.com/rfdez/pvpc-mcp-server/commit/81c8242cf84dbd4875d890e57460fb72cca549aa))
+* **http:** handle error when starting HTTP server ([96bb35a](https://github.com/rfdez/pvpc-mcp-server/commit/96bb35a6cf604a0173dd55ed286eed0ab66236d3))
+
 ## [3.2.3](https://github.com/rfdez/pvpc-mcp-server/compare/v3.2.2...v3.2.3) (2025-09-10)
 
 
