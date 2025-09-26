@@ -74,9 +74,13 @@ async function runHttpServer(port: number) {
 	app.use(
 		cors({
 			origin: "*",
-			methods: ["GET", "POST", "OPTIONS", "DELETE"],
+			methods: ["GET", "POST", "DELETE"],
 			exposedHeaders: ["Mcp-Session-Id"],
-			allowedHeaders: ["Content-Type", "mcp-session-id"],
+			allowedHeaders: [
+				"Content-Type",
+				"mcp-session-id",
+				"mcp-protocol-version",
+			],
 		}),
 	);
 
