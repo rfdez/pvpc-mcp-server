@@ -13,7 +13,7 @@ export class PvpcMcpServer {
 			{
 				name: "pvpc-mcp-server",
 				title: "Voluntary Price for the Small Consumer (PVPC) MCP Server",
-				version: "3.2.3",
+				version: "3.2.4",
 			},
 			{
 				instructions:

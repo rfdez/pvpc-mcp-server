@@ -150,7 +150,13 @@ async function runHttpServer(port: number) {
 		});
 	});
 
-	const httpServer = app.listen(port, () => {
+	const httpServer = app.listen(port, (error) => {
+		if (error) {
+			console.error("Error starting HTTP server:", error);
+
+			process.exit(1);
+		}
+
 		console.log(`Server is running on http://localhost:${port}/mcp`);
 	});
 
