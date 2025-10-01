@@ -11,6 +11,7 @@ This is AGENTS.md, a README for agents: a dedicated, predictable place to provid
 - keep changes focused and minimal
 - explain your reasoning in commit messages or PR descriptions
 - modify the MCP server version only when necessary, according to semver
+- keep the `server.json` file up to date with the latest version of the MCP server
 
 ## Don't
 

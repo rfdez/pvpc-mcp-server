@@ -1,24 +1,24 @@
 {
-	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
 	"name": "io.github.rfdez/pvpc-mcp-server",
 	"description": "Retrieve daily PVPC electricity tariffs for 2.0 TD consumers, published by Red Eléctrica.",
-	"status": "active",
+	"websiteUrl": "https://github.com/rfdez/pvpc-mcp-server",
 	"repository": {
 		"url": "https://github.com/rfdez/pvpc-mcp-server",
 		"source": "github"
 	},
-	"version": "3.2.3",
+	"version": "3.2.4",
 	"packages": [
 		{
-			"registry_type": "npm",
-			"registry_base_url": "https://registry.npmjs.org",
+			"registryType": "npm",
+			"registryBaseUrl": "https://registry.npmjs.org",
 			"identifier": "@rfdez/pvpc-mcp-server",
-			"version": "3.2.3",
-			"runtime_hint": "npx",
+			"version": "3.2.4",
+			"runtimeHint": "npx",
 			"transport": {
 				"type": "stdio"
 			},
-			"package_arguments": [
+			"packageArguments": [
 				{
 					"type": "named",
 					"name": "--transport",
@@ -35,11 +35,11 @@
 			]
 		},
 		{
-			"registry_type": "npm",
-			"registry_base_url": "https://registry.npmjs.org",
+			"registryType": "npm",
+			"registryBaseUrl": "https://registry.npmjs.org",
 			"identifier": "@rfdez/pvpc-mcp-server",
-			"version": "3.2.3",
-			"runtime_hint": "npx",
+			"version": "3.2.4",
+			"runtimeHint": "npx",
 			"transport": {
 				"type": "streamable-http",
 				"url": "http://127.0.0.1:{--port}/mcp",
@@ -52,7 +52,7 @@
 					}
 				]
 			},
-			"package_arguments": [
+			"packageArguments": [
 				{
 					"type": "named",
 					"name": "--transport",
