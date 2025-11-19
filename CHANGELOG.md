@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.5](https://github.com/rfdez/pvpc-mcp-server/compare/v3.2.4...v3.2.5) (2025-11-19)
+
+
+### Bug Fixes
+
+* update deps to fix vulnerabilities ([21acad0](https://github.com/rfdez/pvpc-mcp-server/commit/21acad0e8ee1ff3da72cadaf2514508458b373d1))
+
 ## [3.2.4](https://github.com/rfdez/pvpc-mcp-server/compare/v3.2.3...v3.2.4) (2025-09-26)
 
 
