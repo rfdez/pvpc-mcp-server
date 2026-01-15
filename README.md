@@ -2,7 +2,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NPM Version](https://img.shields.io/npm/v/%40rfdez%2Fpvpc-mcp-server)](https://www.npmjs.com/package/@rfdez/pvpc-mcp-server)
-[![smithery badge](https://smithery.ai/badge/@rfdez/pvpc-mcp-server)](https://smithery.ai/server/@rfdez/pvpc-mcp-server)
 
 Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red Eléctrica at 8:15 p.m. This includes the hourly electricity tariffs that will apply the following day for consumers billed under the 2.0 TD tariff.
 
@@ -29,16 +28,6 @@ Fetch the Voluntary Price for the Small Consumer (PVPC) published daily by Red E
 You need to register an API key from [Esios Red Eléctrica de España](https://www.esios.ree.es/es/pagina/api) to access the Esios Red Eléctrica de España API.
 
 You will find the API documentation at [API e·sios Documentation](https://api.esios.ree.es/).
-
-### Smithery
-
-To install PVPC MCP Server for any client automatically via [Smithery](https://smithery.ai/server/@rfdez/pvpc-mcp-server):
-
-```bash
-npx -y @smithery/cli@latest install @rfdez/pvpc-mcp-server --client <CLIENT_NAME> --profile <YOUR_SMITHERY_PROFILE> --key <YOUR_SMITHERY_KEY>
-```
-
-You can find your Smithery profile and key in the [Smithery.ai webpage](https://smithery.ai/server/@rfdez/pvpc-mcp-server).
 
 ### Claude Desktop
 
