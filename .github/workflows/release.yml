@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  # Needed by googleapis/release-please-action@v4
+  # Needed by googleapis/release-please-action@v5
   contents: write
   pull-requests: write
   issues: write
@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: 🍄 Bump package version, create GitHub release, and update changelog
-        uses: googleapis/release-please-action@v4
+        uses: googleapis/release-please-action@v5
         id: release
         with:
           release-type: node
